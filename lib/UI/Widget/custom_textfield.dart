@@ -5,12 +5,14 @@ class CustomTextfield extends StatefulWidget {
   final bool obsecureText;
   final String hintText;
   final TextInputType? type;
+  final String? Function(String?)? validator;
   const CustomTextfield(
       {super.key,
       required this.controller,
       required this.hintText,
       required this.obsecureText,
-      this.type});
+      this.type,
+      this.validator});
 
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
@@ -19,7 +21,8 @@ class CustomTextfield extends StatefulWidget {
 class _CustomTextfieldState extends State<CustomTextfield> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: widget.validator,
       keyboardType: widget.type,
       obscureText: widget.obsecureText,
       controller: widget.controller,
