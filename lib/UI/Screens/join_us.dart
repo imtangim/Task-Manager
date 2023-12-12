@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:task_manager/UI/Screens/login_screen.dart';
-
 import 'package:task_manager/UI/Widget/background.dart';
-
 import 'package:task_manager/UI/Widget/custom_textfield.dart';
 
 class SignUpScreen extends StatefulWidget {
