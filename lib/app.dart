@@ -50,6 +50,7 @@ class TaskManagerApp extends StatelessWidget {
         primaryColor: Colors.green,
         primarySwatch: Colors.green,
       ),
+      color: Colors.green,
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
     );

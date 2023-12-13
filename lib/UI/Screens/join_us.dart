@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jumping_dot/jumping_dot.dart';
 import 'package:task_manager/Data/data.network_caller/network_caller.dart';
 import 'package:task_manager/Data/data.network_caller/network_response.dart';
 import 'package:task_manager/Data/utitlity/urls.dart';
@@ -35,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   double height = 20;
   bool _signUpProgress = false;
 
-  void Clear() {
+  void clear() {
     _emailTextEditingControler.clear();
     _firstNameTextEditingControler.clear();
     _lastNameTextEditingControler.clear();
@@ -170,8 +171,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             Visibility(
                               visible: _signUpProgress == false,
-                              replacement: const Center(
-                                child: CircularProgressIndicator(),
+                              replacement: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                height: 50,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Center(
+                                  child: JumpingDots(
+                                    verticalOffset: 8,
+                                    color: Colors.white,
+                                    radius: 10,
+                                    numberOfDots: 3,
+                                  ),
+                                ),
                               ),
                               child: ElevatedButton(
                                 onPressed: signup,
@@ -252,7 +268,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (mounted) {
           showSnackMessage(context, "Account has been created.", Colors.green);
         }
-        Clear();
+        clear();
         if (mounted) {
           Navigator.pop(context);
         }
