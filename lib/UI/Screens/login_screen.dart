@@ -7,6 +7,7 @@ import 'package:task_manager/Data/data.network_caller/network_caller.dart';
 import 'package:task_manager/Data/data.network_caller/network_response.dart';
 import 'package:task_manager/Data/utitlity/urls.dart';
 import 'package:task_manager/UI/Screens/forgot_password_screen/email_screen.dart';
+import 'package:task_manager/UI/Screens/homepage/main_bottom_bar.dart';
 import 'package:task_manager/UI/Screens/join_us.dart';
 
 import 'package:task_manager/UI/Widget/background.dart';
@@ -242,44 +243,46 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> signIn() async {
-    if (_formKey.currentState!.validate()) {
-      _signInProgress = true;
-      _showError = false;
-      if (mounted) {
-        setState(() {});
-      }
-      final NetworkResponse networkResponse = await NetworkCaller().postRequest(
-        Urls.login,
-        body: {"email": _email.text.trim(), "password": _password.text},
-      );
-      clear();
-      _signInProgress = false;
-      if (mounted) {
-        setState(() {});
-      }
-      if (networkResponse.isSuccess) {
-        if (mounted) {
-          // Navigator.push(context, MaterialPageRoute(builder: (context)=>))
-          showSnackMessage(context, "Successfull.", Colors.green);
-        }
-      } else {
-        if (networkResponse.statusCode == 401) {
-          _showError = true;
-          if (mounted) {
-            setState(() {});
-            _password.clear();
-          }
-        } else {
-          if (mounted) {
-            showSnackMessage(
-              context,
-              "Something went wrong. Try again latter.",
-              Colors.red,
-            );
-          }
-        }
-      }
-    }
+    // if (_formKey.currentState!.validate()) {
+    //   _signInProgress = true;
+    //   _showError = false;
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
+    //   final NetworkResponse networkResponse = await NetworkCaller().postRequest(
+    //     Urls.login,
+    //     body: {"email": _email.text.trim(), "password": _password.text},
+    //   );
+    //   clear();
+    //   _signInProgress = false;
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
+    //   if (networkResponse.isSuccess) {
+    //     if (mounted) {
+    //       // Navigator.push(context, MaterialPageRoute(builder: (context)=>))
+    //       showSnackMessage(context, "Successfull.", Colors.green);
+    //     }
+    //   } else {
+    //     if (networkResponse.statusCode == 401) {
+    //       _showError = true;
+    //       if (mounted) {
+    //         setState(() {});
+    //         _password.clear();
+    //       }
+    //     } else {
+    //       if (mounted) {
+    //         showSnackMessage(
+    //           context,
+    //           "Something went wrong. Try again latter.",
+    //           Colors.red,
+    //         );
+    //       }
+    //     }
+    //   }
+    // }
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const MainBottomNavBar()));
   }
 
   @override
