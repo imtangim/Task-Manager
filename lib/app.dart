@@ -26,16 +26,21 @@ class TaskManagerApp extends StatelessWidget {
           ),
         ),
         textTheme: const TextTheme(
-            titleLarge: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-              fontFamily: "universal_font",
-            ),
-            bodySmall: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
-              fontFamily: "universal_font",
-            )),
+          titleLarge: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w800,
+            fontFamily: "universal_font",
+          ),
+          titleSmall: TextStyle(
+            fontWeight: FontWeight.w800,
+            fontFamily: "universal_font",
+          ),
+          bodySmall: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            fontFamily: "universal_font",
+          ),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 12),
