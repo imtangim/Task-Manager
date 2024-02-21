@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:task_manager/UI/Widget/customIconButton.dart';
-import 'package:task_manager/UI/Widget/newpostbutton.dart';
+import 'package:task_manager/Widget/newpostbutton.dart';
 
 class TaskCard extends StatelessWidget {
   final String title;

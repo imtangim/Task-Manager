@@ -10,6 +10,8 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 70,
+      width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.zero,
       decoration: const BoxDecoration(
         color: Colors.green,
@@ -47,7 +49,7 @@ class CustomAppBar extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-              log("Clicked");
+              Navigator.pop(context);
             },
             splashRadius: 1,
             icon: const Icon(

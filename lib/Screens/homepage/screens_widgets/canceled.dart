@@ -10,10 +10,8 @@ class CanceledScreen extends StatefulWidget {
 class _CanceledScreenState extends State<CanceledScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return const  Center(
         child: Text("Canceled Screen"),
-      ),
-    );
+      );
   }
 }

@@ -1,18 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/UI/Screens/login_screen.dart';
-import 'package:task_manager/UI/Widget/background.dart';
-import 'package:task_manager/UI/Widget/custom_textfield.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:task_manager/Screens/forgot_password_screen/password_screen.dart';
+import 'package:task_manager/Screens/authentication/login_screen.dart';
 
-class PasswordScreen extends StatefulWidget {
-  const PasswordScreen({super.key});
+import 'package:task_manager/Widget/background.dart';
+
+class OtpScreen extends StatefulWidget {
+  const OtpScreen({super.key});
 
   @override
-  State<PasswordScreen> createState() => _PasswordScreenState();
+  State<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _PasswordScreenState extends State<PasswordScreen> {
-  TextEditingController conformPassword = TextEditingController();
-  TextEditingController password = TextEditingController();
+class _OtpScreenState extends State<OtpScreen> {
+  TextEditingController email = TextEditingController();
+  String currentText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +40,14 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Set Password",
+                            "Pin verification",
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(
                             height: 8,
                           ),
                           Text(
-                            "Minimum lenght of password is 8 character with combination of letter and number",
+                            "A 6 digit verification pin has been sent to your email address",
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.grey,
@@ -53,27 +56,62 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          CustomTextfield(
-                            controller: password,
-                            hintText: "Password",
-                            obsecureText: true,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          CustomTextfield(
-                            controller: conformPassword,
-                            hintText: "Confirm password",
-                            obsecureText: true,
-                          ),
-                          const SizedBox(
-                            height: 20,
+                          PinCodeTextField(
+                            cursorColor: Colors.black,
+                            appContext: context,
+                            length: 6,
+                            obscureText: false,
+                            animationType: AnimationType.fade,
+                            pinTheme: PinTheme(
+                              shape: PinCodeFieldShape.box,
+                              borderRadius: BorderRadius.circular(5),
+                              fieldHeight: 50,
+                              fieldWidth: 40,
+                              activeFillColor: Colors.white,
+                              activeColor: Colors.green,
+                              selectedFillColor: Colors.white,
+                              inactiveFillColor: Colors.white,
+                              inactiveColor: Colors.grey,
+                              selectedColor: Colors.grey,
+                            ),
+                            animationDuration:
+                                const Duration(milliseconds: 300),
+                            enableActiveFill: true,
+                            onCompleted: (v) {
+                              if (kDebugMode) {
+                                print("Completed");
+                              }
+                            },
+                            onChanged: (value) {
+                              if (kDebugMode) {
+                                print(value);
+                              }
+                              setState(() {
+                                currentText = value;
+                              });
+                            },
+                            beforeTextPaste: (text) {
+                              if (kDebugMode) {
+                                print("Allowing to paste $text");
+                              }
+                              //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                              //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                              return true;
+                            },
+                            keyboardType: TextInputType.number,
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PasswordScreen(),
+                                ),
+                              );
+                            },
                             child: Center(
                               child: Text(
-                                "Confirm",
+                                "Verify",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -100,7 +138,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.pushAndRemoveUntil(
+                                 Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>

@@ -10,10 +10,8 @@ class CompletedScreen extends StatefulWidget {
 class _CompletedScreenState extends State<CompletedScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Completed Screen"),
-      ),
+    return const Center(
+      child: Text("Completed Screen"),
     );
   }
 }

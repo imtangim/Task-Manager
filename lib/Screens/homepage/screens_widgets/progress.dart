@@ -10,10 +10,8 @@ class ProgressScreen extends StatefulWidget {
 class _ProgressScreenState extends State<ProgressScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Progress Screen"),
-      ),
+    return const Center(
+      child: Text("Progress Screen"),
     );
   }
 }

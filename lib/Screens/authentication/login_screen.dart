@@ -3,17 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jumping_dot/jumping_dot.dart';
-import 'package:task_manager/Data/data.network_caller/network_caller.dart';
-import 'package:task_manager/Data/data.network_caller/network_response.dart';
-import 'package:task_manager/Data/utitlity/urls.dart';
-import 'package:task_manager/UI/Screens/forgot_password_screen/email_screen.dart';
-import 'package:task_manager/UI/Screens/homepage/main_bottom_bar.dart';
-import 'package:task_manager/UI/Screens/join_us.dart';
 
-import 'package:task_manager/UI/Widget/background.dart';
+import 'package:task_manager/Screens/forgot_password_screen/email_screen.dart';
+import 'package:task_manager/Screens/homepage/main_scren/main_bottom_bar.dart';
+import 'package:task_manager/Screens/authentication/join_us.dart';
 
-import 'package:task_manager/UI/Widget/custom_textfield.dart';
-import 'package:task_manager/UI/Widget/snack_messager.dart';
+import 'package:task_manager/Widget/background.dart';
+
+import 'package:task_manager/Widget/custom_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -59,6 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               "Get Started With",
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
+                            
+                            //if error , it will be shown here
                             _showError == true
                                 ? Column(
                                     children: [

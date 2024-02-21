@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class PlainBackGround extends StatelessWidget {
   const PlainBackGround({super.key});
 

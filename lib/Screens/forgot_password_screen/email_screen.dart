@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:task_manager/UI/Screens/forgot_password_screen/otp_screen.dart';
-import 'package:task_manager/UI/Screens/login_screen.dart';
+import 'package:task_manager/Screens/forgot_password_screen/otp_screen.dart';
+import 'package:task_manager/Screens/authentication/login_screen.dart';
 
-import 'package:task_manager/UI/Widget/background.dart';
+import 'package:task_manager/Widget/background.dart';
 
-import 'package:task_manager/UI/Widget/custom_textfield.dart';
+import 'package:task_manager/Widget/custom_textfield.dart';
 
 class EmailScreen extends StatefulWidget {
   const EmailScreen({super.key});
