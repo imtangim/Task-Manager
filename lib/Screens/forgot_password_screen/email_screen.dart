@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/Screens/forgot_password_screen/otp_screen.dart';
 import 'package:task_manager/Screens/authentication/login_screen.dart';
 
@@ -98,13 +99,7 @@ class _EmailScreenState extends State<EmailScreen> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginScreen(),
-                                      ),
-                                      (route) => false);
+                                  Get.offAll(() => LoginScreen());
                                 },
                                 child: Text(
                                   "Sign in",

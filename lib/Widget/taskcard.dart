@@ -1,7 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:task_manager/UI/Widget/customIconButton.dart';
+import 'package:task_manager/Widget/customiconbutton.dart';
+
 import 'package:task_manager/Widget/newpostbutton.dart';
 
 class TaskCard extends StatelessWidget {

@@ -50,5 +50,7 @@ class ThemeShifter {
     primarySwatch: Colors.green,
   );
 
-  static ThemeData darkTheme = ThemeData.dark();
+  static ThemeData darkTheme = ThemeData.dark(
+    
+  );
 }

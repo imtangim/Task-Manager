@@ -1,8 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:task_manager/Widget/custom_app_bar.dart';
 import 'package:task_manager/Widget/custom_card.dart';
 import 'package:task_manager/Widget/plainbackground.dart';
 import 'package:task_manager/Widget/taskcard.dart';
