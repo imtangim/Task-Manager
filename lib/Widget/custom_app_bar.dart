@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/Screens/authentication/login_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -49,7 +51,7 @@ class CustomAppBar extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-              Navigator.pop(context);
+              Get.offNamedUntil('/', (route) => true);
             },
             splashRadius: 1,
             icon: const Icon(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jumping_dot/jumping_dot.dart';
-import 'package:task_manager/GetXController/auth_controller.dart';
+import 'package:task_manager/GetXController/login_controller.dart';
 import 'package:task_manager/Screens/forgot_password_screen/email_screen.dart';
 import 'package:task_manager/Screens/authentication/join_us.dart';
 import 'package:task_manager/Widget/background.dart';
@@ -16,9 +16,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   RegExp emailRegExp =
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+  @override
+  void dispose() {
+    // Dispose of resources held by the state
+    // Call dispose method of super class
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
               child: Center(
-                child: GetBuilder<AuthController>(builder: (authcontroller) {
+                child: GetBuilder<LoginController>(builder: (logincontroller) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.width * 0.1),
-                        child: Form(
-                          key: authcontroller.signformKey,
+                      Form(
+                        key: logincontroller.loginFormKey,
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.1),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -50,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
 
                               //if error , it will be shown here
-                              authcontroller.showSigninError == true
+                              logincontroller.showSigninError == true
                                   ? Column(
                                       children: [
                                         const SizedBox(
@@ -72,10 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 20,
                               ),
                               CustomTextfield(
-                                onchanged: (String? value) {
-                                  authcontroller.signformKey.currentState!
-                                      .validate();
-                                },
                                 validator: (String? value) {
                                   if (value?.trim().isEmpty ?? true) {
                                     return "Email cannot be empty";
@@ -85,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                   return null;
                                 },
-                                controller: authcontroller
+                                controller: logincontroller
                                     .signinEmailTextEditingControler,
                                 hintText: "Email",
                                 obsecureText: false,
@@ -95,10 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 20,
                               ),
                               CustomTextfield(
-                                onchanged: (String? value) {
-                                  authcontroller.signformKey.currentState!
-                                      .validate();
-                                },
                                 validator: (String? value) {
                                   if (value == null || value.isEmpty) {
                                     return "Password cannot be empty.";
@@ -106,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return null;
                                 },
                                 icon: const Icon(Icons.visibility_outlined),
-                                controller: authcontroller
+                                controller: logincontroller
                                     .signinPasswordTextEditingControler,
                                 hintText: "Password",
                                 obsecureText: true,
@@ -115,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 14,
                               ),
                               Visibility(
-                                visible: !authcontroller.isLoading,
+                                visible: !logincontroller.isLoading,
                                 replacement: Container(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 12),
@@ -140,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const Size(double.infinity, 50),
                                   ),
                                   onPressed: () {
-                                    authcontroller.signIn(context);
+                                    logincontroller.signIn();
                                   },
                                   child: Center(
                                     child: SvgPicture.asset(
@@ -156,8 +154,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               Center(
                                 child: InkWell(
                                   onTap: () {
+                                    logincontroller.loginFormKey.currentState
+                                        ?.reset();
                                     Get.off(() => const EmailScreen());
-                                    authcontroller.signinClear();
+                                    logincontroller.signinClear();
                                   },
                                   child: Text(
                                     "Forgot Password?",
@@ -190,7 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => SignUpScreen(),
+                                          builder: (context) =>
+                                              const SignUpScreen(),
                                         ),
                                       );
                                     },
