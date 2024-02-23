@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_manager/Screens/authentication/login_screen.dart';
+import 'package:task_manager/GetXController/share_preference_controller.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -18,48 +16,59 @@ class CustomAppBar extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.green,
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: ListTile(
-              onTap: () => log("Tile clicked"),
-              textColor: Colors.white,
-              tileColor: Colors.green,
-              leading: const CircleAvatar(
-                backgroundImage: AssetImage(
+      child: GetBuilder<SharedPreferenceController>(
+        builder: (cache) {
+          ImageProvider<Object>? backgroundImage = cache.user!.photo!.isEmpty
+              ? (const AssetImage(
                   "assets/image/avatar.jpg",
+                )) as ImageProvider<Object>?
+              : NetworkImage(
+                  cache.user!.photo.toString(),
+                );
+          return Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  onTap: () {},
+                  textColor: Colors.white,
+                  tileColor: Colors.green,
+                  leading: CircleAvatar(
+                    backgroundImage: backgroundImage,
+                    maxRadius: 25,
+                  ),
+                  title: Text(
+                    "${cache.user!.firstName!} ${cache.user!.lastName!}",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                  ),
+                  subtitle: Text(
+                    cache.user!.email!,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.white,
+                          fontSize: 11,
+                        ),
+                  ),
+                  iconColor: Colors.white,
                 ),
-                maxRadius: 25,
               ),
-              title: Text(
-                "Tangim Haque",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-              ),
-              subtitle: Text(
-                "tanjim437@gmail.com",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.white,
-                      fontSize: 11,
-                    ),
-              ),
-              iconColor: Colors.white,
-            ),
-          ),
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {
-              Get.offNamedUntil('/', (route) => true);
-            },
-            splashRadius: 1,
-            icon: const Icon(
-              Icons.exit_to_app,
-              color: Colors.white,
-            ),
-          ),
-        ],
+              GetBuilder<SharedPreferenceController>(builder: (cache) {
+                return IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    cache.logout();
+                  },
+                  splashRadius: 1,
+                  icon: const Icon(
+                    Icons.exit_to_app,
+                    color: Colors.white,
+                  ),
+                );
+              }),
+            ],
+          );
+        },
       ),
     );
   }

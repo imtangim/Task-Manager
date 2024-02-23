@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/GetXController/share_preference_controller.dart';
 import 'package:task_manager/Screens/authentication/login_screen.dart';
+import 'package:task_manager/Screens/homepage/main_scren/main_bottom_bar.dart';
 import 'package:task_manager/Widget/background.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,20 +16,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late SharedPreferenceController sharedPreferenceController;
   @override
   void initState() {
     super.initState();
-    gotoLogin();
+    sharedPreferenceController = Get.put(SharedPreferenceController());
+    Future.delayed(const Duration(seconds: 2), () {
+      gotoLogin(sharedPreferenceController);
+    });
   }
 
-  void gotoLogin() {
-    Future.delayed(const Duration(seconds: 2)).then(
-      (value) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
-            (route) => false);
-      },
+  void gotoLogin(SharedPreferenceController controller) async {
+    log("Checking auth state...");
+    await controller.checkAuthState();
+    log("State: ${controller.authState}");
+    Get.offAll(
+      () => controller.authState == false
+          ? const LoginScreen()
+          : const MainBottomNavBar(),
     );
   }
 

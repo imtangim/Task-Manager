@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const Size(double.infinity, 50),
                                   ),
                                   onPressed: () {
-                                    logincontroller.signIn();
+                                    logincontroller.signIn(context);
                                   },
                                   child: Center(
                                     child: SvgPicture.asset(
@@ -187,13 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SignUpScreen(),
-                                        ),
-                                      );
+                                     
+                                        Get.offAll(()=> const SignUpScreen());
                                     },
                                     child: Text(
                                       "Sign Up",

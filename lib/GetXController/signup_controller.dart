@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +21,8 @@ class SignupController extends GetxController {
   final TextEditingController phoneTextEditingControler =
       TextEditingController();
 
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(debugLabel: '_homeScreenkey');
+  GlobalKey<FormState> signupFormKey =
+      GlobalKey<FormState>(debugLabel: '_homeScreenkey');
 
   bool isLoading = false;
 
@@ -45,14 +45,15 @@ class SignupController extends GetxController {
 
         if (response.isSuccess) {
           signupClear();
-          Get.off(LoginScreen());
+          Get.offAll(() => const LoginScreen());
+
           update();
-         
-          // showSnackMessage(
-          //   context,
-          //   "Account has been created.",
-          //   Colors.green,
-          // );
+
+          showSnackMessage(
+            context,
+            "Account has been created.",
+            Colors.green,
+          );
         } else {
           showSnackMessage(
             context,
