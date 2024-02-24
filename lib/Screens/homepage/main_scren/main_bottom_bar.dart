@@ -22,7 +22,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
     const HomeDashboard(),
     const CompletedScreen(),
     const CanceledScreen(),
-    ProgressScreen(),
+    const ProgressScreen(),
   ];
   @override
   Widget build(BuildContext context) {
