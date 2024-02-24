@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     log("State: ${controller.authState}");
     Get.offAll(
       () => controller.authState == false
-          ? const LoginScreen()
+          ?  LoginScreen()
           : const MainBottomNavBar(),
     );
   }

@@ -45,7 +45,7 @@ class SignupController extends GetxController {
 
         if (response.isSuccess) {
           signupClear();
-          Get.offAll(() => const LoginScreen());
+          Get.offAll(() =>  LoginScreen());
 
           update();
 

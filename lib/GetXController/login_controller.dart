@@ -1,4 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/Data/data.network_caller/network_caller.dart';
@@ -34,6 +36,7 @@ class LoginController extends GetxController {
             "email": signinEmailTextEditingControler.text.trim(),
             "password": signinPasswordTextEditingControler.text
           },
+          islogin: true,
         );
         if (networkResponse.isSuccess) {
           //shared preference
@@ -55,17 +58,19 @@ class LoginController extends GetxController {
           Get.off(() => const MainBottomNavBar());
           signinClear();
         } else {
-          if (networkResponse.statusCode == 401) {
+          if (networkResponse.statusCode == 401 ||
+              networkResponse.statusCode == -1) {
             showSigninError = true;
             update();
             signinPasswordTextEditingControler.clear();
           } else {
             signinClear();
-            // showSnackMessage(
-            //   context,
-            //   "Something went wrong. Try again latter.",
-            //   Colors.red,
-            // );
+            log(networkResponse.statusCode.toString());
+            showSnackMessage(
+              context,
+              "Something went wrong. Try again latter.",
+              Colors.red,
+            );
           }
         }
       }

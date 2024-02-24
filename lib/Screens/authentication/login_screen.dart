@@ -8,23 +8,11 @@ import 'package:task_manager/Screens/authentication/join_us.dart';
 import 'package:task_manager/Widget/background.dart';
 import 'package:task_manager/Widget/custom_textfield.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  RegExp emailRegExp =
+  final RegExp emailRegExp =
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-  @override
-  void dispose() {
-    // Dispose of resources held by the state
-    // Call dispose method of super class
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                     
-                                        Get.offAll(()=> const SignUpScreen());
+                                      Get.offAll(() => const SignUpScreen());
                                     },
                                     child: Text(
                                       "Sign Up",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/GetXController/share_preference_controller.dart';
+import 'package:task_manager/GetXController/task_controller.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -54,17 +55,20 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
               GetBuilder<SharedPreferenceController>(builder: (cache) {
-                return IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {
-                    cache.logout();
-                  },
-                  splashRadius: 1,
-                  icon: const Icon(
-                    Icons.exit_to_app,
-                    color: Colors.white,
-                  ),
-                );
+                return GetBuilder<TaskController>(builder: (taskController) {
+                  return IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      cache.logout();
+                      taskController.taskCreateState = false;
+                    },
+                    splashRadius: 1,
+                    icon: const Icon(
+                      Icons.exit_to_app,
+                      color: Colors.white,
+                    ),
+                  );
+                });
               }),
             ],
           );

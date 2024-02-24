@@ -11,6 +11,7 @@ class CustomTextfield extends StatefulWidget {
   final double? height;
   final Icon? icon;
   final Function()? iconMethod;
+  final int? maxLine;
 
   const CustomTextfield({
     super.key,
@@ -23,6 +24,7 @@ class CustomTextfield extends StatefulWidget {
     this.onchanged,
     this.icon,
     this.iconMethod,
+    this.maxLine,
   });
 
   @override
@@ -35,6 +37,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: widget.onchanged,
+      maxLines: widget.maxLine ?? 1,
       validator: widget.validator,
       keyboardType: widget.type,
       obscureText: isObsecure == true ? widget.obsecureText : false,
@@ -56,7 +59,9 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                     }
                   });
                 },
-                icon: isObsecure == true ?   widget.icon! : const Icon(Icons.visibility_off),
+                icon: isObsecure == true
+                    ? widget.icon!
+                    : const Icon(Icons.visibility_off),
               )
             : null,
       ),

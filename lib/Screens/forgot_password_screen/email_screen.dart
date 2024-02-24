@@ -99,7 +99,7 @@ class _EmailScreenState extends State<EmailScreen> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.offAll(() => LoginScreen());
+                                  Get.offAll(() =>  LoginScreen());
                                 },
                                 child: Text(
                                   "Sign in",

@@ -65,6 +65,6 @@ class SharedPreferenceController extends GetxController {
     authState = false;
     token = null;
     update();
-    Get.offAll(() => const LoginScreen());
+    Get.offAll(() => LoginScreen());
   }
 }
