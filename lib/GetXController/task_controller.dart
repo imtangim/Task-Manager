@@ -16,9 +16,14 @@ class TaskController extends GetxController {
   bool taskCreateState = false;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool isloading = false;
-
+  bool showAllProgress = false;
   void changeTaskState() {
     taskCreateState = !taskCreateState;
+    update();
+  }
+
+  void changeShow() {
+    showAllProgress = !showAllProgress;
     update();
   }
 
@@ -124,6 +129,11 @@ class TaskController extends GetxController {
     log(filteredList.toString());
     return dataMap;
   }
+
+  
+
+
+
 
   void clear() {
     subject.clear();

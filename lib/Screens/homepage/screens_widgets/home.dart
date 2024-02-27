@@ -21,7 +21,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
       child: GetBuilder<TaskController>(builder: (taskController) {
         return taskController.taskCreateState
             ? const CreateTask()
-            :  const Dashboard();
+            : const Dashboard();
       }),
     );
   }

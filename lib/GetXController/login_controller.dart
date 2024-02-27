@@ -54,7 +54,8 @@ class LoginController extends GetxController {
             ),
           );
 
-          showSnackMessage(context, "Successfull.", Colors.green);
+          showSnackMessage(
+              context, "HI ${userdata?['firstName']}.", Colors.green);
           Get.off(() => const MainBottomNavBar());
           signinClear();
         } else {

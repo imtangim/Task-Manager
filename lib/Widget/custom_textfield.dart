@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatefulWidget {
   final TextEditingController controller;
   final bool obsecureText;
-  final String hintText;
+  final String? hintText;
   final TextInputType? type;
   final String? Function(String?)? validator;
   final Function(String)? onchanged;
@@ -16,7 +15,7 @@ class CustomTextfield extends StatefulWidget {
   const CustomTextfield({
     super.key,
     required this.controller,
-    required this.hintText,
+    this.hintText,
     required this.obsecureText,
     this.type,
     this.validator,
@@ -54,9 +53,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 onPressed: () {
                   setState(() {
                     isObsecure = !isObsecure;
-                    if (kDebugMode) {
-                      print(isObsecure);
-                    }
+                  
                   });
                 },
                 icon: isObsecure == true

@@ -18,7 +18,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
   int _selectedIndex = 0;
 
   final List<bool> _barItem = [true, false, false, false];
-  final List<Widget> _screens =  [
+  final List<Widget> _screens = [
     const HomeDashboard(),
     const CompletedScreen(),
     const CanceledScreen(),
@@ -27,13 +27,11 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const CustomAppBar(),
-            _screens[_selectedIndex],
-          ],
-        ),
+      body: Column(
+        children: [
+          const CustomAppBar(),
+          _screens[_selectedIndex],
+        ],
       ),
       bottomNavigationBar: GetBuilder<TaskController>(builder: (controller) {
         return BottomNavigationBar(

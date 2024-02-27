@@ -1,6 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/GetXController/taskStatus_controller.dart';
 import 'package:task_manager/Widget/customiconbutton.dart';
 
 import 'package:task_manager/Widget/newpostbutton.dart';
@@ -14,6 +16,8 @@ class TaskCard extends StatelessWidget {
   final Function() new_Ontap;
   final Function() edit_Ontap;
   final Function() delete_ontap;
+  final bool isFromAler;
+
   const TaskCard({
     super.key,
     required this.title,
@@ -22,13 +26,14 @@ class TaskCard extends StatelessWidget {
     required this.new_Ontap,
     required this.edit_Ontap,
     required this.delete_ontap,
-    required this.catagory, required this.color,
+    required this.catagory,
+    required this.color,
+    required this.isFromAler,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
       surfaceTintColor: Colors.white,
       child: Padding(
@@ -67,7 +72,6 @@ class TaskCard extends StatelessWidget {
               children: [
                 PostNewButton(
                   color: color,
-
                   title: catagory,
                   ontap: new_Ontap,
                 ),
@@ -85,21 +89,32 @@ class TaskCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CustomIconButton(
-                        ontap: () {},
-                        icons: Icons.edit_document,
-                        color: const Color.fromARGB(
-                          255,
-                          49,
-                          192,
-                          123,
+                      Visibility(
+                        visible: catagory == "Ongoing",
+                        child: CustomIconButton(
+                          ontap: edit_Ontap,
+                          icons: Icons.edit_document,
+                          color: const Color.fromARGB(
+                            255,
+                            49,
+                            192,
+                            123,
+                          ),
                         ),
                       ),
-                      CustomIconButton(
-                        ontap: () {},
-                        icons: Icons.delete,
-                        color: Colors.red,
-                      )
+                      !isFromAler
+                          ? GetBuilder<TaskStatusController>(
+                              builder: (controller) {
+                              return Visibility(
+                                visible: catagory == "Ongoing",
+                                child: CustomIconButton(
+                                  ontap: () => delete_ontap(),
+                                  icons: Icons.delete,
+                                  color: Colors.red,
+                                ),
+                              );
+                            })
+                          : const SizedBox()
                     ],
                   ),
                 ),

@@ -32,7 +32,7 @@ class CustomCard extends StatelessWidget {
                 tween: IntTween(begin: 0, end: number),
                 duration: const Duration(seconds: 2),
                 builder: (context, value, child) => Text(
-                  number == 0 ? "" : "$number",
+                  number == 0 ? "00" : "$number",
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

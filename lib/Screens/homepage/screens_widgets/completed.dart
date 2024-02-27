@@ -26,6 +26,13 @@ class _CompletedScreenState extends State<CompletedScreen> {
                     color: Colors.green,
                   ),
                 );
+              } else if (snapshot.data!.isEmpty) {
+                return Center(
+                  child: Text(
+                    "No Task Found",
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                );
               } else if (snapshot.hasError) {
                 // If there's an error, show an error message
                 return Center(child: Text('Error: ${snapshot.error}'));
@@ -36,8 +43,9 @@ class _CompletedScreenState extends State<CompletedScreen> {
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     TaskModel task = tasks[index];
-                    
+
                     return TaskCard(
+                      isFromAler: false,
                       color: Colors.green,
                       title: task.title,
                       description: task.description,

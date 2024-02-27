@@ -59,6 +59,7 @@ class NetworkCaller {
     final String token = _sharedPreferenceController.token ?? '';
 
     try {
+      log("Wait for it..");
       final http.Response response = await http.get(
         Uri.parse(url),
         headers: {"Content-type": "Application/json", "token": token},

@@ -29,8 +29,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   void dispose() {
-    // Dispose of resources held by the state
-    // Call dispose method of super class
     super.dispose();
   }
 

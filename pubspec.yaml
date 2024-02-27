@@ -44,6 +44,7 @@ dependencies:
   shimmer: ^3.0.0
   syncfusion_flutter_charts: ^24.2.7+1
   pie_chart: ^5.4.0
+  image_picker: ^1.0.7
 
 dev_dependencies:
   flutter_test:

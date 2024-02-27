@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomIconButton extends StatelessWidget {
   final Color? color;
   final IconData icons;
-  final Function ontap;
+  final Function() ontap;
 
   const CustomIconButton({
     super.key,
@@ -28,7 +28,7 @@ class CustomIconButton extends StatelessWidget {
             ),
           ),
           onTap: () {
-            ontap;
+            ontap();
           },
         ),
       ),
