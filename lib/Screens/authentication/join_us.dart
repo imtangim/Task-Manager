@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/GetXController/signup_controller.dart';
 import 'package:task_manager/Widget/background.dart';
 import 'package:task_manager/Widget/signup_form.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  final controller = Get.lazyPut(() => SignupController());
+  SignUpScreen({super.key});
 
   final double height = 20;
 

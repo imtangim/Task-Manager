@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/Screens/authentication/login_screen.dart';
 import 'package:task_manager/Widget/background.dart';
 import 'package:task_manager/Widget/custom_textfield.dart';
@@ -100,13 +101,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                             LoginScreen(),
-                                      ),
-                                      (route) => false);
+                                  Get.offAll(LoginScreen());
                                 },
                                 child: Text(
                                   "Sign in",

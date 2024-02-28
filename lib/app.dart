@@ -7,13 +7,13 @@ import 'package:task_manager/Screens/splash_screen/splash_screen.dart';
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
 
-  static GlobalKey<ScaffoldMessengerState> messengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      scaffoldMessengerKey: messengerKey,
+
+      
       initialBinding: GetxDependencyBinder(),
       theme: ThemeShifter.lightTheme,
       color: Colors.green,

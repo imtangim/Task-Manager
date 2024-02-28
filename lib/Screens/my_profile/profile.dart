@@ -322,14 +322,14 @@ class Header extends StatelessWidget {
                 children: [
                   controller.sharedPreferenceController.user?.photo != ""
                       ? Base64ImagePreview(
-                          radius: 50,
+                          radius: 40,
                           base64Image: controller
                                   .sharedPreferenceController.user!.photo ??
                               "",
                         )
                       : CircleAvatar(
                           backgroundImage: backgroundImage,
-                          maxRadius: 50,
+                          maxRadius: 40,
                         ),
                   const SizedBox(
                     width: 15,
@@ -340,12 +340,12 @@ class Header extends StatelessWidget {
                     children: [
                       Text(
                         "${cache.user!.firstName} ${cache.user!.lastName}",
-                        overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.fade,
                         style:
                             Theme.of(context).textTheme.headlineLarge!.copyWith(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "universal_font",
-                                  fontSize: 24,
+                                  fontSize: 20,
                                 ),
                       ),
                       const SizedBox(
@@ -357,7 +357,7 @@ class Header extends StatelessWidget {
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                               fontWeight: FontWeight.bold,
                               fontFamily: "universal_font",
-                              fontSize: 14,
+                              fontSize: 11,
                               color: Colors.grey,
                             ),
                       ),

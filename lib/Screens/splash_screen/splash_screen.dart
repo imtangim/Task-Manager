@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     sharedPreferenceController = Get.put(SharedPreferenceController());
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       gotoLogin(sharedPreferenceController);
     });
   }
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     log("State: ${controller.authState}");
     Get.offAll(
       () => controller.authState == false
-          ?  LoginScreen()
+          ? LoginScreen()
           : const MainBottomNavBar(),
     );
   }
