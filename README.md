@@ -1,6 +1,6 @@
 <p align="center" ><img src="https://socialify.git.ci/imtangim/Task-Manager/image?language=1&name=1&owner=1&pattern=Solid&stargazers=1&theme=Auto" alt="Task-Manager" width="640" height="320" /></p>
 
-# Reddit Clone
+# Task Manager
 
 Responsive Task Manager App using Flutter and GetX 
 
